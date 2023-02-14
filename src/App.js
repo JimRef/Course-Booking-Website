@@ -5,6 +5,8 @@ import {Fragment} from 'react';
 import AppNavBar from './components/AppNavBar.js';
 import Home from './pages/Home.js'
 import Courses from './pages/Courses.js'
+import Register from './pages/Register.js'
+import Login from './pages/Login.js'
 /*import Banner from './Banner.js'
 import Highlights from './Highlights.js'*/
 
@@ -13,8 +15,10 @@ function App() {
     <Fragment>
     <AppNavBar/>
     <Container>
-        <Home/>
-        <Courses/>
+        {/*<Home/>
+        <Courses/>*/}
+      {/*<Register/>*/}
+      <Login/>
     </Container>
     </Fragment>
   );
