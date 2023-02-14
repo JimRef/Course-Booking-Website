@@ -6,8 +6,8 @@ export default function Highlights(){
 	return(
 		
 			<Row className="mt-5 " >
-				<Col>
-					<Card style={{ width: '18rem' }} className="m-2">
+				<Col className ="col-md-4 col-10 mx-auto m-md-0 m-1">
+					<Card className="cardHighlight">
 					      <Card.Body>
 					        <Card.Title>Learn From Home</Card.Title>
 					        <Card.Text>
@@ -18,8 +18,8 @@ export default function Highlights(){
 					</Card>
 				</Col>
 				{/*Second Card*/}
-				<Col>
-					<Card style={{ width: '18rem' }} className="m-2">
+				<Col className ="col-md-4 col-10 mx-auto m-md-0 m-1">
+					<Card className="cardHighlight">
 					      <Card.Body>
 					        <Card.Title>Study Now, Pay Later</Card.Title>
 					        <Card.Text>
@@ -30,8 +30,8 @@ export default function Highlights(){
 					</Card>
 				</Col>	
 				{/*Third Card*/}
-				<Col>
-					<Card style={{ width: '18rem' }} className="m-2">
+				<Col className ="col-md-4 col-10 mx-auto m-md-0 m-1">
+					<Card className="cardHighlight">
 					      <Card.Body>
 					        <Card.Title>Be Part of our Community</Card.Title>
 					        <Card.Text>
