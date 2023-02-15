@@ -14,7 +14,8 @@ export default function Courses(){
 	})
 
 	return(	
-		<Fragment>	
+		<Fragment>
+			<h1 className="text-center mt-3">Courses</h1>	
 			{courses}
 		</Fragment>
 		)

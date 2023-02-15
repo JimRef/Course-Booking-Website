@@ -1,6 +1,7 @@
 import {Button,Form} from 'react-bootstrap';
 import {Fragment} from 'react';
 import {useState,useEffect} from 'react'
+import {Navigate} from 'react-router-dom'
 
 export default function Register(){
 
@@ -8,6 +9,7 @@ export default function Register(){
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [isActive, setIsActive] = useState(false);
+	const [user, setUser] = useState(localStorage.getItem("email"))
 
 	/*useEffect(()=>{
 		console.log(email)
@@ -31,9 +33,12 @@ export default function Register(){
 		setConfirmPassword('');
 	}
 	return(
+		user ?
+		<Navigate to ="/"/>
+		:
 		<Fragment>
 			<h1 className="text-center mt-5">Register</h1>
-			<Form className="mt-5" onSubmit = {event => register(event)}>
+			<Form className="mt-5 mx-auto col-md-6" onSubmit = {event => register(event)}>
 			     <Form.Group className="mb-3" controlId="formBasicEmail">
 			       <Form.Label>Email address</Form.Label>
 			       <Form.Control 

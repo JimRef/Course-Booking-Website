@@ -18,7 +18,7 @@ export default function CourseCard({courseProp}){
 		if (enrollees === 29 && seats === 1) {
 			setEnrolless(enrollees +1)
 			setSeats(seats-1)
-			return alert("Congratulations fo making it to the cut")
+			return alert("Congratulations for making it to the cut")
 		} else {
 			setEnrolless(enrollees +1)
 			setSeats(seats-1)
