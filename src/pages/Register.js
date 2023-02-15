@@ -1,7 +1,8 @@
 import {Button,Form} from 'react-bootstrap';
-import {Fragment} from 'react';
-import {useState,useEffect} from 'react'
-import {Navigate} from 'react-router-dom'
+import {Fragment, useState, useEffect, useContext, } from 'react'
+import {Navigate,useNavigate} from 'react-router-dom'
+import UserContext from '../UserContext.js'
+
 
 export default function Register(){
 
@@ -9,7 +10,9 @@ export default function Register(){
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [isActive, setIsActive] = useState(false);
-	const [user, setUser] = useState(localStorage.getItem("email"))
+	// const [user, setUser] = useState(localStorage.getItem("email"))
+	const {user, setUser} = useContext(UserContext);
+	const navigate = useNavigate();
 
 	/*useEffect(()=>{
 		console.log(email)
@@ -31,10 +34,13 @@ export default function Register(){
 		setEmail('');
 		setPassword('');
 		setConfirmPassword('');
+		localStorage.setItem("email", email)
+		setUser(localStorage.getItem("email"))
+		navigate("/")
 	}
 	return(
 		user ?
-		<Navigate to ="/"/>
+		<Navigate to ="/*"/>
 		:
 		<Fragment>
 			<h1 className="text-center mt-5">Register</h1>

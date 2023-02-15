@@ -4,14 +4,14 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import {Link, NavLink} from 'react-router-dom'
 import {useState} from 'react';
-import {Fragment} from 'react';
-
+import {Fragment, useContext} from 'react';
+import UserContext from '../UserContext.js'
 
 export default function AppNavBar(){
 	console.log(localStorage.getItem("email"))
 
-	const [user, setUser] = useState(localStorage.getItem("email"))
-
+	// const [user, setUser] = useState(localStorage.getItem("email"))
+	const {user} = useContext(UserContext)
 
 	return(
 			<Navbar bg="light" expand="lg">
