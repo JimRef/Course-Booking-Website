@@ -31,11 +31,12 @@ export default function Register(){
 	function register (event){
 		event.preventDefault();
 		alert("Congratulations, Your are now registered on our website!")
+		localStorage.setItem("email", email)
+		setUser(localStorage.getItem("email"))
 		setEmail('');
 		setPassword('');
 		setConfirmPassword('');
-		localStorage.setItem("email", email)
-		setUser(localStorage.getItem("email"))
+		
 		navigate("/")
 	}
 	return(
