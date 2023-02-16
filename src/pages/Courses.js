@@ -1,17 +1,34 @@
-import coursesData from '../database/courses.js';
+
 import CourseCard from '../components/CourseCard.js';
-import {Fragment} from 'react';
+import {Fragment, useEffect, useState} from 'react';
 
 
 
 
 export default function Courses(){
 	// console.log(coursesData)
-	const courses = coursesData.map(course =>{
+
+
+	// const courses = coursesData.map(course =>{
+	// 	return(
+	// 			<CourseCard key={course.id} courseProp={course}/>
+	// 		)
+	// })
+
+	const [courses, setCourses] = useState([]);
+
+	useEffect(()=>{
+		fetch(`${process.env.REACT_APP_API_URL}/course/allActive`,)
+		.then(result => result.json())
+		.then(data => {
+			console.log(data)
+			setCourses(data.map(course =>{
 		return(
-				<CourseCard key={course.id} courseProp={course}/>
-			)
-	})
+	 			<CourseCard key={course._id} courseProp={course}/>
+	 		)
+		 }))
+		})
+	},[])
 
 	return(	
 		<Fragment>

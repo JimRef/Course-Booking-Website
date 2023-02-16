@@ -1,8 +1,9 @@
 import {Button,Form} from 'react-bootstrap';
 import {Fragment} from 'react';
 import {useState, useEffect, useContext} from 'react'
-import {Navigate, useNavigate} from 'react-router-dom';
-import UserContext from '../UserContext.js'
+import {Navigate, useNavigate, Link} from 'react-router-dom';
+import UserContext from '../UserContext.js';
+import Swal from 'sweetalert2';
 
 export default function Login (){
 
@@ -22,20 +23,70 @@ export default function Login (){
 		}
 	},[email,password])
 
+
+
 	function login (event){
 		event.preventDefault();
 
-		localStorage.setItem("email", email)
+		fetch(`${process.env.REACT_APP_API_URL}/user/login`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				email: email,
+				password: password
+			})
+		}).then(result => result.json())
+		.then(data => {
+			console.log(data)
+
+			if (data === false) {
+				Swal.fire({
+					title: "Authentication failed!",
+					icon: 'error',
+					text: "Please try again!"
+				})
+			} else {
+				localStorage.setItem('token', data.auth)
+				retrieveUserDetails(localStorage.getItem('token'))
+
+				Swal.fire({
+					title: "Authentication successfull",
+					icon: 'success',
+					text: "Welcome to Zuitt"
+				})
+
+				navigate("/")
+			}
+		})
+
+		/*localStorage.setItem("email", email)
 		setUser(localStorage.getItem("email"))
 		alert("Your are now login!")
 		setEmail('');
-		setPassword('');
+		setPassword('');*/
 
-		navigate("/")
+		// navigate("/")
 		
 	}
 
+	const retrieveUserDetails = (token) => {
+		fetch(`${process.env.REACT_APP_API_URL}/user/details`, {
+			headers:{
+				Authorization: `Bearer ${token}`
+			}
+		})
+		.then(result => result.json())
+		.then(data =>{
+			console.log(data)
 
+			setUser({
+				id: data._id,
+				isAdmin: data.isAdmin
+			})
+		})
+	}
 
 	return(
 		user ?
@@ -65,6 +116,9 @@ export default function Login (){
 			       		value = {password}
 			       		onChange = {event => setPassword(event.target.value)}
 			       		required />
+			       	<Form.Text className="text-muted">
+			         Don't have an account? <Link to ="/register">Register</Link>
+			       </Form.Text>	
 			     </Form.Group>		
 			     			     
 			     {

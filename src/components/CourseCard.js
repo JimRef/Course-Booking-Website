@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom';
 
 export default function CourseCard({courseProp}){
 	// console.log(course);
-	const {name,description,price} = courseProp;
+	const {_id,name,description,price} = courseProp;
 	
 	const [enrollees, setEnrolless] = useState(0);
 	const [seats, setSeats] = useState(30);
@@ -50,7 +50,7 @@ export default function CourseCard({courseProp}){
 				        
 				        {
 				        	user ?
-				        	<Button variant="primary" onClick = {enroll} disabled={isDisabled}>Enroll</Button>
+				        	<Button as = {Link} to = {`/course/${_id}`} variant="primary"  disabled={isDisabled}>See more details</Button>
 				        	:
 				        	<Button as = {Link} to = "/login" variant="primary">Login</Button>
 				        }
